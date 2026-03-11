@@ -77,7 +77,7 @@ const ContactPage = () => {
           to_email: "promethiumlabspvtltd@gmail.com",
           email: em,                    // some templates use {{email}}
           // Message content
-          service_interest: formData.sv || "General Inquiry",
+          service: formData.sv || "General Inquiry",
           message: msg,
         },
         EMAILJS_PUBLIC_KEY
