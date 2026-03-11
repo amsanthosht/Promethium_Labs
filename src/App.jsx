@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { CursorProvider } from "./components/cursor/CursorContext.jsx";
 import Cursor from "./components/cursor/Cursor.jsx";
-import { useLenis } from "./hooks/useLenis.js";
+import { useLenis, getLenis } from "./hooks/useLenis.js";
 import Nav from "./components/layout/Nav.jsx";
 import Footer from "./components/layout/Footer.jsx";
 import PageTransition from "./components/layout/PageTransition.jsx";
@@ -23,10 +23,18 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Scroll to top on every page change
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    // Scroll to top on every page change — Lenis-aware
+    const lenis = getLenis();
+    if (lenis) {
+      // 1. Jump Lenis to top immediately
+      lenis.scrollTo(0, { immediate: true });
+      // 2. Give the new page DOM time to paint, then recalculate scroll height
+      const t = setTimeout(() => lenis.resize(), 120);
+      return () => clearTimeout(t);
+    } else {
+      // Mobile fallback (Lenis disabled on <768px)
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
   }, [location.pathname]);
 
   useEffect(() => {

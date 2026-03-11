@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 
+// Module-level reference so App can access lenis for scroll reset + resize
+let _lenis = null;
+export const getLenis = () => _lenis;
+
 export const useLenis = () => {
   useEffect(() => {
     // Disable Lenis on small screens to avoid jank
@@ -15,6 +19,8 @@ export const useLenis = () => {
       wheelMultiplier: 0.9,
       touchMultiplier: 1.5,
     });
+
+    _lenis = lenis;
 
     let frameId;
 
@@ -56,7 +62,7 @@ export const useLenis = () => {
       document.removeEventListener("visibilitychange", onVisibility);
       document.removeEventListener("click", handleAnchorClick);
       lenis.destroy();
+      _lenis = null;
     };
   }, []);
 };
-
