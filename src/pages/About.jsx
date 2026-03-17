@@ -1,32 +1,12 @@
 import { useEffect } from "react";
 import { useSEO } from "../hooks/useSEO.js";
 
-const founders = [
-  {
-    name: "Dinesh",
-    role: "Co-Founder & CEO",
-    focus: "Business strategy, digital marketing, partnerships, and client relations.",
-    initial: "D",
-  },
-  {
-    name: "Santhosh",
-    role: "Co-Founder & CTO",
-    focus: "Software development — web platforms, AI tools, and scalable applications.",
-    initial: "S",
-  },
-  {
-    name: "Vickey",
-    role: "Co-Founder & COO",
-    focus: "Product development, technical architecture, and project execution.",
-    initial: "V",
-  },
-];
-
 const AboutPage = () => {
   useSEO({
     title: "About",
-    description: "Promethium Labs — founded in 2026 by Dinesh (CEO), Santhosh (CTO), and Vickey (COO). An experimental software lab based in Chennai, Tamil Nadu building AI tools and developer platforms.",
-    keywords: "about Promethium Labs, Chennai startup founders, AI software lab India",
+    description: "Promethium Labs — a bootstrapped software lab in Chennai, Tamil Nadu. We build AI tools, web apps, and run digital marketing for startups and businesses across India.",
+    keywords: "about Promethium Labs, Chennai software startup, AI software lab India",
+    path: "/about",
   });
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -90,43 +70,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* ── FOUNDERS ──────────────────────── */}
-      <section className="px-8 md:px-16 py-24 max-md:px-6">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-10 mb-12" style={{ borderBottom: "1px solid rgba(13,13,8,0.08)" }}>
-            <div>
-              <p className="rev-left font-mono text-[0.6rem] uppercase tracking-[0.2em] text-greenMid mb-3">
-                The founders
-              </p>
-              <h2 className="section-h rev-up text-[clamp(2rem,4vw,3.5rem)]">Who&apos;s behind it.</h2>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-0">
-            {founders.map((f, i) => (
-              <article
-                key={f.name}
-                className="rev py-10 pr-8"
-                style={{
-                  borderTop: "1px solid rgba(13,13,8,0.08)",
-                  transitionDelay: `${i * 0.1}s`,
-                }}
-              >
-                {/* Avatar initial */}
-                <div
-                  className="w-12 h-12 flex items-center justify-center font-sans font-black text-xl mb-6"
-                  style={{ background: "#10b981", color: "#0d0d08" }}
-                >
-                  {f.initial}
-                </div>
-                <h3 className="section-h text-[1.6rem] mb-1 text-ink">{f.name}</h3>
-                <p className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-greenMid mb-4">{f.role}</p>
-                <p className="text-[0.9rem] text-gray leading-[1.8] font-light max-w-xs">{f.focus}</p>
-              </article>
-            ))}
-          </div>
-          <div style={{ borderTop: "1px solid rgba(13,13,8,0.08)" }} />
-        </div>
-      </section>
 
       {/* ── VALUES ─────────────────────────── */}
       <section className="bg-ink text-cream px-8 md:px-16 py-24 max-md:px-6">

@@ -10,6 +10,7 @@ import PageTransition from "./components/layout/PageTransition.jsx";
 
 const Home = lazy(() => import("./pages/Home.jsx"));
 const ServicesPage = lazy(() => import("./pages/Services.jsx"));
+const DigitalMarketingPage = lazy(() => import("./pages/DigitalMarketing.jsx"));
 const ProjectsPage = lazy(() => import("./pages/Projects.jsx"));
 const LearnPage = lazy(() => import("./pages/Learn.jsx"));
 const CareersPage = lazy(() => import("./pages/Careers.jsx"));
@@ -70,8 +71,9 @@ function App() {
               <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<ServicesPage />} />
+                <Route path="/services/digital-marketing" element={<DigitalMarketingPage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
-                <Route path="/learn" element={<LearnPage />} />
+                <Route path="/resources" element={<LearnPage />} />
                 <Route path="/careers" element={<CareersPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />

@@ -6,9 +6,10 @@ const Home = () => {
   const heroRef = useRef(null);
   const blobRefs = useRef([]);
   useSEO({
-    title: "Promethium Labs — AI Tools & Developer Platforms",
-    description: "Promethium Labs is an experimental software lab building next-generation AI tools, developer platforms, and digital products for startups and businesses. Based in Chennai, India.",
-    keywords: "AI tools, software development, developer platforms, digital marketing, Chennai startup",
+    title: "Promethium Labs — Software Development & Digital Marketing",
+    description: "Promethium Labs is a Chennai-based software lab building web apps, AI tools, mobile apps, and running results-driven digital marketing for startups and businesses across India.",
+    keywords: "software development Chennai, web development India, AI tools, digital marketing agency India, React development, mobile app development India",
+    path: "/",
   });
 
   useEffect(() => {
@@ -84,16 +85,21 @@ const Home = () => {
           {/* Rule + body row */}
           <div className="pt-10 mt-2" style={{ borderTop: "1px solid rgba(13,13,8,0.1)" }}>
             <div className="flex flex-wrap items-start justify-between gap-10">
-              <p className="rev max-w-lg text-[1rem] leading-[1.75] font-light" style={{ color: "#7a7468" }}>
-                <strong style={{ color: "#0d0d08", fontWeight: 600 }}>Promethium Labs</strong> is an experimental
-                software lab building{" "}
-                <strong style={{ color: "#0d0d08", fontWeight: 600 }}>
-                  AI tools, developer platforms,
-                </strong>{" "}
-                and digital products for startups and businesses. Based in Chennai. Built to last.
-              </p>
+              <div>
+                <p className="rev max-w-lg text-[1rem] leading-[1.75] font-light" style={{ color: "#7a7468" }}>
+                  <strong style={{ color: "#0d0d08", fontWeight: 600 }}>Promethium Labs</strong> is an experimental
+                  software lab building{" "}
+                  <strong style={{ color: "#0d0d08", fontWeight: 600 }}>
+                    AI tools, developer platforms,
+                  </strong>{" "}
+                  and digital products for startups and businesses. Based in Chennai. Built to last.
+                </p>
+                <p className="mt-4 font-mono text-[0.6rem] uppercase tracking-[0.14em]" style={{ color: "#10b981" }}>
+                  ✦ 10+ projects shipped · 5 active clients · Est. 2026
+                </p>
+              </div>
               <div className="rev-right flex flex-wrap items-start gap-4 pt-1">
-                <a href="/projects" className="cta-main">View Projects</a>
+                <a href="/projects" className="cta-main">See Our Work</a>
                 <a href="/contact" className="cta-ghost">Work With Us →</a>
               </div>
             </div>
@@ -111,7 +117,7 @@ const Home = () => {
               <div key={i} className="flex">
                 {[
                   ["AI", "Products"], ["Software", "Development"],
-                  ["Digital", "Marketing"], ["3", "Founders"],
+                  ["Digital", "Marketing"], ["10+", "Projects"],
                   ["Chennai", "India"], ["2026", "Founded"],
                 ].map(([n, l]) => (
                   <div key={n + l + i} className="stat-item"><span className="n">{n}</span><span className="l">{l}</span></div>
@@ -125,7 +131,7 @@ const Home = () => {
             {[1, 2].map((i) => (
               <div key={i} className="flex">
                 {[
-                  ["Fast", "Delivery"], ["Real", "Mentorship"],
+                  ["Fast", "Delivery"], ["Real", "Results"],
                   ["Zero", "Bullshit"], ["Live", "Projects"],
                   ["India", "Based Team"], ["Remote", "Friendly"],
                 ].map(([n, l]) => (
@@ -136,6 +142,41 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {/* ══════════════════════════════════════════════════
+          TRUST BAR — social proof
+      ══════════════════════════════════════════════════ */}
+      <section style={{ background: "#0d0d08", borderBottom: "1px solid rgba(244,239,230,0.06)" }} className="px-8 md:px-16 py-12 max-md:px-6">
+        <div className="mx-auto max-w-7xl">
+          <p className="font-mono text-[0.55rem] uppercase tracking-[0.2em] mb-8 text-center" style={{ color: "rgba(244,239,230,0.25)" }}>
+            Trusted by startups &amp; businesses across India
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
+            {[
+              { stat: "10+", label: "Projects Shipped" },
+              { stat: "5+", label: "Active Clients" },
+              { stat: "2", label: "Core Services" },
+              { stat: "100%", label: "Remote Capable" },
+            ].map((item, i) => (
+              <div
+                key={item.label}
+                className="rev text-center py-8"
+                style={{
+                  borderLeft: i > 0 ? "1px solid rgba(244,239,230,0.06)" : "none",
+                  transitionDelay: `${i * 0.08}s`,
+                }}
+              >
+                <div className="font-sans font-black mb-1" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#10b981" }}>
+                  {item.stat}
+                </div>
+                <div className="font-mono text-[0.58rem] uppercase tracking-[0.14em]" style={{ color: "rgba(244,239,230,0.35)" }}>
+                  {item.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════
           WHAT WE DO — AI Products first
@@ -153,13 +194,12 @@ const Home = () => {
 
           <div className="space-y-0">
             {[
-              { n: "01", title: "AI & Software Development", desc: "Web apps, APIs, AI integrations, and automation tools — built to scale." },
-              { n: "02", title: "Digital Marketing", desc: "SEO, social media, content strategy, and growth campaigns that convert." },
-              { n: "03", title: "Internship Program", desc: "Real projects, real mentorship, real certificates for students and freshers." },
+              { n: "01", title: "AI & Software Development", desc: "Web apps, APIs, AI integrations, and automation tools — built to scale.", href: "/services" },
+              { n: "02", title: "Digital Marketing", desc: "SEO, social media, content strategy, and growth campaigns that convert.", href: "/services/digital-marketing" },
             ].map((svc, i) => (
               <a
                 key={svc.n}
-                href={i === 2 ? "/careers" : "/services"}
+                href={svc.href}
                 className="group flex items-center justify-between py-8 transition-all duration-300"
                 style={{
                   borderTop: "1px solid rgba(13,13,8,0.15)",
@@ -280,9 +320,11 @@ const Home = () => {
               </p>
               <div className="rev-right space-y-6">
                 <p className="text-[1rem] leading-[1.9] font-light" style={{ color: "#7a7468" }}>
-                  We also run an{" "}
-                  <strong style={{ color: "#0d0d08", fontWeight: 500 }}>internship program</strong>{" "}
-                  for students and freshers — real project experience, real mentorship, real certificates. No busy work.
+                  We work across{" "}
+                  <strong style={{ color: "#0d0d08", fontWeight: 500 }}>AI &amp; software development</strong>{" "}
+                  and{" "}
+                  <strong style={{ color: "#0d0d08", fontWeight: 500 }}>digital marketing</strong>{" "}
+                  — two disciplines that compound when done together. Built to move fast.
                 </p>
                 <div
                   className="inline-flex items-center gap-2 px-4 py-2 font-mono text-[0.6rem] tracking-[0.12em] uppercase"

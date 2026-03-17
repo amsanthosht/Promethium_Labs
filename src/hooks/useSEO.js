@@ -1,65 +1,72 @@
 import { useEffect } from "react";
 
+const BASE_URL = "https://promethiumlabs.in";
+
 /**
- * useSEO — sets document title and meta description for each page.
- * Usage: useSEO({ title: "About", description: "Learn about our team..." })
+ * useSEO — sets document title, meta description, keywords, OG and Twitter tags per page.
+ * Usage: useSEO({ title: "About", description: "...", keywords: "...", path: "/about" })
  */
-export const useSEO = ({ title, description, keywords } = {}) => {
+export const useSEO = ({ title, description, keywords, path } = {}) => {
   useEffect(() => {
-    // Title
-    document.title = title
+    const fullTitle = title
       ? `${title} | Promethium Labs`
-      : "Promethium Labs — AI Tools & Developer Platforms";
+      : "Promethium Labs — Software Development & Digital Marketing, Chennai";
 
-    // Meta description
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.setAttribute("name", "description");
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute(
-      "content",
+    const fullDesc =
       description ||
-        "Promethium Labs — Building next-generation AI tools, developer platforms, and digital products for startups and businesses. Based in Chennai, India."
-    );
+      "Promethium Labs is a software lab in Chennai building web apps, AI tools, and digital marketing solutions for startups and businesses across India.";
 
-    // Meta keywords
-    if (keywords) {
-      let metaKw = document.querySelector('meta[name="keywords"]');
-      if (!metaKw) {
-        metaKw = document.createElement("meta");
-        metaKw.setAttribute("name", "keywords");
-        document.head.appendChild(metaKw);
-      }
-      metaKw.setAttribute("content", keywords);
-    }
+    const canonicalUrl = `${BASE_URL}${path || "/"}`;
 
-    // Open Graph
-    const setOG = (property, content) => {
-      let el = document.querySelector(`meta[property="${property}"]`);
+    // Title
+    document.title = fullTitle;
+
+    // Helper: upsert a <meta> tag
+    const setMeta = (attr, key, value) => {
+      let el = document.querySelector(`meta[${attr}="${key}"]`);
       if (!el) {
         el = document.createElement("meta");
-        el.setAttribute("property", property);
+        el.setAttribute(attr, key);
         document.head.appendChild(el);
       }
-      el.setAttribute("content", content);
+      el.setAttribute("content", value);
     };
 
-    setOG("og:site_name", "Promethium Labs");
-    setOG(
-      "og:title",
-      title ? `${title} | Promethium Labs` : "Promethium Labs — AI Tools & Developer Platforms"
-    );
-    setOG(
-      "og:description",
-      description ||
-        "Promethium Labs — Building next-generation AI tools, developer platforms, and digital products."
-    );
-    setOG("og:type", "website");
+    // Helper: upsert a <link> tag
+    const setLink = (rel, href) => {
+      let el = document.querySelector(`link[rel="${rel}"]`);
+      if (!el) {
+        el = document.createElement("link");
+        el.setAttribute("rel", rel);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("href", href);
+    };
+
+    // Standard meta
+    setMeta("name", "description", fullDesc);
+    if (keywords) setMeta("name", "keywords", keywords);
+
+    // Canonical
+    setLink("canonical", canonicalUrl);
+
+    // Open Graph
+    setMeta("property", "og:title", fullTitle);
+    setMeta("property", "og:description", fullDesc);
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:site_name", "Promethium Labs");
+    setMeta("property", "og:url", canonicalUrl);
+    setMeta("property", "og:image", `${BASE_URL}/og-image.png`);
+    setMeta("property", "og:locale", "en_IN");
+
+    // Twitter
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:title", fullTitle);
+    setMeta("name", "twitter:description", fullDesc);
+    setMeta("name", "twitter:image", `${BASE_URL}/og-image.png`);
 
     return () => {
-      document.title = "Promethium Labs — AI Tools & Developer Platforms";
+      document.title = "Promethium Labs — Software Development & Digital Marketing, Chennai";
     };
-  }, [title, description, keywords]);
+  }, [title, description, keywords, path]);
 };

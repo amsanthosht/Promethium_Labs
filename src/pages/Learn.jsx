@@ -38,9 +38,10 @@ const paths = [
 
 const LearnPage = () => {
   useSEO({
-    title: "Learn",
-    description: "Start learning with Promethium Labs. Structured learning paths for Web Development, AI/ML, Backend Development, and DevOps/Cloud. Learn by building real projects.",
-    keywords: "learn web development, AI ML learning, developer courses India, coding bootcamp Chennai",
+    title: "Resources",
+    description: "Developer resources from Promethium Labs — structured learning paths for Web Development, AI/ML, Backend, and DevOps. Build real skills on real projects.",
+    keywords: "developer resources, web development learning, AI ML learning paths, coding resources India, software dev tutorials Chennai",
+    path: "/resources",
   });
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -68,7 +69,7 @@ const LearnPage = () => {
       <section className="px-8 md:px-16 pt-36 pb-20 max-md:px-6" style={{ borderBottom: "1px solid rgba(13,13,8,0.08)" }}>
         <div className="mx-auto max-w-7xl">
           <p className="rev-left font-mono text-[0.6rem] uppercase tracking-[0.2em] mb-8" style={{ color: "#10b981" }}>
-            Learn — Start Learning With Us
+            Resources — Start Learning With Us
           </p>
           <h1 className="display-h rev-up mb-10" style={{ fontSize: "clamp(3.5rem, 9vw, 8rem)", color: "#0d0d08" }}>
             Build real skills.
