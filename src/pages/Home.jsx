@@ -110,7 +110,7 @@ const Home = () => {
       {/* ══════════════════════════════════════════════════
           STATS TICKER
       ══════════════════════════════════════════════════ */}
-      <div style={{ borderTop: "1px solid rgba(13,13,8,0.06)", borderBottom: "1px solid rgba(13,13,8,0.06)" }}>
+      <div style={{ background: "#0d0d08", borderTop: "1px solid rgba(244,239,230,0.06)", borderBottom: "1px solid rgba(244,239,230,0.06)" }}>
         <div className="stats-bar">
           <div className="stats-track">
             {[1, 2].map((i) => (

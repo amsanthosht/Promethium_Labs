@@ -532,7 +532,7 @@ const CareersPage = () => {
                 Internship Program — Currently Open
               </p>
               <h2 className="section-h rev-up" style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)", color: "#f4efe6" }}>
-                For students &amp; freshers.
+                Internship Programme.
               </h2>
             </div>
             <div className="rev-right flex flex-wrap gap-8 shrink-0">
